@@ -239,6 +239,7 @@ See documentation for the function `ledger-master-file'")
 (defun ledger-report-binary-format-specifier ()
   "Return the path to ledger, plus a marker for extra arguments."
   (list (shell-quote-argument ledger-binary-path)
+        (mapconcat 'identity ledger-binary-args " ")
         ledger-report--extra-args-marker))
 
 (defun ledger-report-tagname-format-specifier ()

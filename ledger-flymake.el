@@ -79,7 +79,8 @@ Flymake calls this with REPORT-FN as needed."
         :buffer (generate-new-buffer " *ledger-flymake*")
         :command (cl-remove
                   nil
-                  `(,ledger-binary-path "-f" ,file
+                  `(,ledger-binary-path ,@ledger-binary-args
+                                        "-f" ,file
                                         ,(when ledger-flymake-be-pedantic "--pedantic")
                                         ,(when ledger-flymake-be-explicit "--explicit")
                                         "balance"))

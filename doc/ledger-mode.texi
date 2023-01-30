@@ -1173,6 +1173,9 @@ Ledger Exec: Interface to the Ledger command-line accounting program.
 @item ledger-binary-path
 Path to the ledger executable.
 
+@item ledger-binary-args
+Arguments to pass to ledger executable.
+
 @item ledger-init-file-name
 Location of the ledger initialization file. nil if you don't have one.
 

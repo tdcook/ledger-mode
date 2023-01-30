@@ -48,6 +48,11 @@
   :risky t
   :group 'ledger-exec)
 
+(defcustom ledger-binary-args nil
+  "Arguments to pass to ledger executable."
+  :type '(repeat 'string)
+  :group 'ledger-exec)
+
 (defun ledger-exec-handle-error (ledger-errfile)
   "Deal with ledger errors contained in LEDGER-ERRFILE."
   (with-current-buffer (get-buffer-create "*Ledger Error*")
@@ -86,7 +91,9 @@ otherwise the error output is displayed and an error is raised."
                        (coding-system-for-read 'utf-8))
                    (apply #'call-process-region
                           (append (list (point-min) (point-max)
-                                        ledger-binary-path nil (list outbuf errfile) nil "-f" "-")
+                                        ledger-binary-path nil (list outbuf errfile) nil)
+                                  ledger-binary-args
+                                  (list "-f" "-")
                                   (list "--date-format" ledger-default-date-format)
                                   args)))))
             (if (ledger-exec-success-p exit-code outbuf)
